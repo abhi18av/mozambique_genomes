@@ -1,3 +1,6 @@
+# NOTE to be used from the host terminal
+# USAGE nohup python3 run_trimmomatic.py & 
+
 import shutil
 import os
 

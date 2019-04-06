@@ -13,9 +13,31 @@ java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 118_cat_R1.fast
 
 ```
 # bwa_index_reference_genome
+
 ```
 bwa index NC000962_3.fasta
 ```
+
+- output 
+
+```sh
+root@vaani /biodragon/vagrantBox/mozambique_genomes/lab master # vagrant ssh
+Last login: Sat Apr  6 16:28:35 2019 from gateway
+[root@localhost ~]# cd /vagrant/mozambique_genomes/lab/
+[root@localhost lab]# bwa index NC000962_3.fasta
+[bwa_index] Pack FASTA... 3.80 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 10.19 seconds elapse.
+[bwa_index] Update BWT... 3.99 sec
+[bwa_index] Pack forward-only FASTA... 2.74 sec
+[bwa_index] Construct SA from BWT and Occ... 5.58 sec
+[main] Version: 0.7.12-r1039
+[main] CMD: bwa index NC000962_3.fasta
+[main] Real time: 74.667 sec; CPU: 26.326 sec
+
+
+```
+
 # unziping pared files
 ```
 gunzip *.p.fastq.gz

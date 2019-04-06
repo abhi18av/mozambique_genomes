@@ -8,7 +8,7 @@
 - 
 
 ```
-java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 118_cat_R1.fastq.gz 118_cat_R2.fastq.gz 118_cat_R1.p.fastq.gz 118_cat_R1s.fastq.gz 118_cat_R2.p.fastq.gz 118_cat_R2s.fastq.gz ILLUMINACLIP:NexteraPE-PE.fa:2:30:10 LEADING:15 TRAILING:15 HEADCROP:7 SLIDINGWINDOW:4:15 MINLEN:36 
+java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 118_cat_R1.fastq.gz 118_cat_R2.fastq.gz 118_cat_R1.p.fastq.gz 118_cat_R1.s.fastq.gz 118_cat_R2.p.fastq.gz 118_cat_R2.s.fastq.gz ILLUMINACLIP:NexteraPE-PE.fa:2:30:10 LEADING:15 TRAILING:15 HEADCROP:7 SLIDINGWINDOW:4:15 MINLEN:36 
 
 
 ```

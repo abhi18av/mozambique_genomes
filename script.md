@@ -1,15 +1,19 @@
 #Mozambique genomes - Trimmomatic
 # trimmomatic
+```
 java -jar trimmomatic-0.36.jar PE -phred33 xxx_R1.fastq.gz xxx_R2.fastq.gz xxx_R1.p.fastq.gz xxx_R1s.fastq.gz xxx_R2.p.fastq.gz xxx_R2s.fastq.gz ILLUMINACLIP:NexteraPE-PE.fa:2:30:10 LEADING:15 TRAILING:15 HEADCROP:7 SLIDINGWINDOW:4:15 MINLEN:36 && 
+
+```
 # bwa_index_reference_genome
-
+```
 bwa index NC000962_3.fasta
-
+```
 # unziping pared files
+```
 gunzip *.p.fastq.gz
-
+```
 # map_and_generate_sam_file
-
+```
 bwa mem -R "@RG\tID:PT000033\tSM:PT000033\tSM:xxx\tSM:Illumina" -M NC000962_3.fasta PT000033_1_trimmed_paired.fastq PT000033_2_trimmed_paired.fastq > PT000033.sam 
 
 bwa mem -R "@RG\tID:118\tSM:118\tSM:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
@@ -39,7 +43,7 @@ bwa mem -R "@RG\tID:2078\tSM:2078\tSM:2078\tSM:Illumina" -M NC000962_3.fasta 207
 
 bwa mem -R "@RG\tID:G00118\tSM:G00118\tSM:xxx\tSM:Illumina" -M NC000962_3.fasta G00118_R1.p.fastq G00118_R2.p.fastq > G00118.sam 
 
-
+```
 
  
 

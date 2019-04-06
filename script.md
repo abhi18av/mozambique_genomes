@@ -1,7 +1,15 @@
-#Mozambique genomes - Trimmomatic
+# Mozambique genomes
+
+
 # trimmomatic
+
+- To run this, we need to add https://github.com/timflutre/trimmomatic/blob/master/adapters/NexteraPE-PE.fa to the folder as well
+
+- 
+
 ```
-java -jar trimmomatic-0.36.jar PE -phred33 xxx_R1.fastq.gz xxx_R2.fastq.gz xxx_R1.p.fastq.gz xxx_R1s.fastq.gz xxx_R2.p.fastq.gz xxx_R2s.fastq.gz ILLUMINACLIP:NexteraPE-PE.fa:2:30:10 LEADING:15 TRAILING:15 HEADCROP:7 SLIDINGWINDOW:4:15 MINLEN:36 && 
+java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 118_cat_R1.fastq.gz 118_cat_R2.fastq.gz 118_cat_R1.p.fastq.gz 118_cat_R1s.fastq.gz 118_cat_R2.p.fastq.gz 118_cat_R2s.fastq.gz ILLUMINACLIP:NexteraPE-PE.fa:2:30:10 LEADING:15 TRAILING:15 HEADCROP:7 SLIDINGWINDOW:4:15 MINLEN:36 
+
 
 ```
 # bwa_index_reference_genome

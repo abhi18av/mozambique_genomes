@@ -93,14 +93,10 @@ facing issues with the bwa
 118.sam             118_cat_R2.p.fastq  NC000962_3.fasta.amb  NC000962_3.fasta.bwt  NC000962_3.fasta.sa
 118_cat_R1.p.fastq  NC000962_3.fasta    NC000962_3.fasta.ann  NC000962_3.fasta.pac
 
-
 [root@localhost test]# bwa mem -R "@RG\tID:118\tSM:118\tPL:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
 [M::bwa_idx_load_from_disk] read 0 ALT contigs
 [E::main_mem] fail to open file `118_R1.p.fastq'.
 [root@localhost test]#
-
-
-
 
 
                              

@@ -38,15 +38,29 @@ Last login: Sat Apr  6 16:28:35 2019 from gateway
 
 ```
 
-# unziping pared files
+# unziping paired files
+
+- Unzip all the paired files
+
 ```
 gunzip *.p.fastq.gz
 ```
 # map_and_generate_sam_file
+
+
+
+bwa mem -R "@RG ID:118  SM:118  SM:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
+
+
+
 ```
 bwa mem -R "@RG\tID:PT000033\tSM:PT000033\tSM:xxx\tSM:Illumina" -M NC000962_3.fasta PT000033_1_trimmed_paired.fastq PT000033_2_trimmed_paired.fastq > PT000033.sam 
 
-bwa mem -R "@RG ID:118  SM:118  SM:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
+bwa mem -R "@RG ID:118  SM:118  PL:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
+
+bwa mem -R "@RG\tID:G04868\tSM:G04868\tPL:Illumina" -M NC000962_3.fasta G04868_1_trimmed_paired.fastq G04868_2_trimmed_paired.fastq > G04868.sam
+
+
 bwa mem -R "@RG\tID:141\tSM:141\tSM:141\tSM:Illumina" -M NC000962_3.fasta 141_R1.p.fastq 141_R2.p.fastq > 141.sam 
 bwa mem -R "@RG\tID:205\tSM:205\tSM:205\tSM:Illumina" -M NC000962_3.fasta 205_R1.p.fastq 205_R2.p.fastq > 205.sam
 bwa mem -R "@RG\tID:208\tSM:208\tSM:208\tSM:Illumina" -M NC000962_3.fasta 208_R1.p.fastq 208_R2.p.fastq > 208.sam

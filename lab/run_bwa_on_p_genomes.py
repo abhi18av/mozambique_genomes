@@ -156,9 +156,9 @@ def run_bwa(a_pair):
     genome_2_p = file_location_inside_virtualbox + a_pair[1]
 #    print(genome_2_p)
 
-    bwa_initial_command = "vagrant ssh \"bwa mem -R \"@RG\\tID:"
+    bwa_initial_command = "vagrant ssh -c \"bwa mem -R \\\"@RG\\tID:"
 
-    illumina_string = "\\tSM:Illumina\" -M " + file_location_inside_virtualbox + "NC000962_3.fasta "
+    illumina_string = "\\tSM:Illumina\\\" -M " + file_location_inside_virtualbox + "NC000962_3.fasta "
 
     cmd = bwa_initial_command +  \
           genome_name +  \

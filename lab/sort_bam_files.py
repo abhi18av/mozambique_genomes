@@ -48,7 +48,7 @@ def sort_bam_files(a_bam_file):
 
     print(cmd)
 
-    #os.system(cmd)
+    os.system(cmd)
 
     print("\n $$$$$$$$$$ \n")
 

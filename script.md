@@ -864,3 +864,13 @@ for a_pair in genome_pairs:
 
 ```
 
+- SpoTyping 
+https://github.com/xiaeryu/SpoTyping-v2.0/tree/master/SpoTyping-v2.0-commandLine
+
+from inside the virtualbox 
+
+```
+python2.7 SpoTyping.py ./118_cat_R1.fastq ./118_cat_R2.fastq
+```
+
+

@@ -12,6 +12,209 @@ java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 118_cat_R1.fast
 
 
 ```
+
+
+```python
+import shutil
+import os
+
+# # TODO create pairs of genomes based on same first name
+
+# all_files = [f for f in os.listdir() if  os.path.isfile(f)]
+
+
+
+# def has_fastq_in_name(string):
+#     if (string.find("fastq") == -1):
+#         #print("NO")
+#         return 0
+#     else:
+#         #print("YES")
+#         return 1
+
+
+# all_fastq_files = list(filter(lambda x:has_fastq_in_name(x), all_files))
+
+
+genome_pairs = [
+
+
+    ["118_cat_R1.fastq.gz",
+     "118_cat_R2.fastq.gz"],
+
+    ["141_cat_R1.fastq.gz",
+     "141_cat_R2.fastq.gz"],
+
+    ["205_cat_R1.fastq.gz",
+     "205_cat_R2.fastq.gz"],
+
+    ["208_cat_R1.fastq.gz",
+     "208_cat_R2.fastq.gz"],
+
+    ["227_S3_L001_R1_001.fastq.gz",
+     "227_S3_L001_R2_001.fastq.gz"],
+
+    ["243_S5_L001_R1_001.fastq.gz",
+     "243_S5_L001_R2_001.fastq.gz"],
+
+    ["316_S5_L001_R1_001.fastq.gz",
+     "316_S5_L001_R2_001.fastq.gz"],
+
+    ["370_cat_R1.fastq.gz",
+     "370_cat_R2.fastq.gz"],
+
+    ["509_S6_L001_R1_001.fastq.gz",
+     "509_S6_L001_R2_001.fastq.gz"],
+
+    ["581_cat_R1.fastq.gz",
+     "581_cat_R2.fastq.gz"],
+
+    ["751_S8_L001_R1_001.fastq.gz",
+     "751_S8_L001_R2_001.fastq.gz"],
+
+    ["894_S9_L001_R1_001.fastq.gz",
+     "894_S9_L001_R2_001.fastq.gz"],
+
+    ["964_S10_L001_R1_001.fastq.gz",
+     "964_S10_L001_R2_001.fastq.gz"],
+
+    ["1507_cat_R1.fastq.gz",
+     "1507_cat_R2.fastq.gz"],
+
+    ["1689_cat_R1.fastq.gz",
+     "1689_cat_R2.fastq.gz"],
+
+    ["1728_cat_R1.fastq.gz",
+     "1728_cat_R2.fastq.gz"],
+
+    ["1866_cat_R1.fastq.gz",
+     "1866_cat_R2.fastq.gz"],
+
+    ["1869_cat_R1.fastq.gz",
+     "1869_cat_R2.fastq.gz"],
+
+    ["2065_cat_R1.fastq.gz",
+     "2065_cat_R2.fastq.gz"],
+
+    ["2078_S14_L001_R1_001.fastq.gz",
+     "2078_S14_L001_R2_001.fastq.gz"],
+
+    ["2136_cat_R1.fastq.gz",
+     "2136_cat_R2.fastq.gz"],
+
+    ["2235_cat_R1.fastq.gz",
+     "2235_cat_R2.fastq.gz"],
+
+    ["2330_S17_L001_R1_001.fastq.gz",
+     "2330_S17_L001_R2_001.fastq.gz"],
+
+    ["2368_cat_R1.fastq.gz",
+     "2368_cat_R2.fastq.gz"],
+
+    ["2422_cat_R1.fastq.gz",
+     "2422_cat_R2.fastq.gz"],
+
+    ["2440_S20_L001_R1_001.fastq.gz",
+     "2440_S20_L001_R2_001.fastq.gz"],
+
+    ["2449_cat_R1.fastq.gz",
+     "2449_cat_R2.fastq.gz"],
+
+    ["2683_cat_R1.fastq.gz",
+     "2683_cat_R2.fastq.gz"],
+
+    ["2721_cat_R1.fastq.gz",
+     "2721_cat_R2.fastq.gz"],
+
+    ["2852_S25_L001_R1_001.fastq.gz",
+     "2852_S25_L001_R2_001.fastq.gz"],
+
+    ["3026_S26_L001_R1_001.fastq.gz",
+     "3026_S26_L001_R2_001.fastq.gz"],
+
+    ["3033_cat_R1.fastq.gz",
+     "3033_cat_R2.fastq.gz"],
+
+    ["3141_cat_R1.fastq.gz",
+     "3141_cat_R2.fastq.gz"],
+
+    ["3185_cat_R1.fastq.gz",
+     "3185_cat_R2.fastq.gz"],
+
+    ["3376_cat_R1.fastq.gz",
+     "3376_cat_R2.fastq.gz"]
+
+    ]
+
+
+# java -jar /opt/Trimmomatic-0.36.jar PE -phred33
+
+# 118_cat_R1.fastq.gz
+# 118_cat_R2.fastq.gz
+# 118_cat_R1.p.fastq.gz
+# 118_cat_R1.s.fastq.gz
+# 118_cat_R2.p.fastq.gz
+# 118_cat_R2.s.fastq.gz
+
+# ILLUMINACLIP:NexteraPE-PE.fa:2:30:10 LEADING:15 TRAILING:15 HEADCROP:7 SLIDINGWINDOW:4:15 MINLEN:36
+
+file_location_inside_virtualbox = "/vagrant/mozambique_genomes/lab/"
+
+
+def run_trimmomatic(a_pair):
+
+    genome_1 = file_location_inside_virtualbox + a_pair[0]
+#    print(genome_1)
+    genome_1_s =  file_location_inside_virtualbox + "".join(a_pair[0].split(".")[:-2]) + ".s.fastq.gz"
+#    print(genome_1_s)
+    genome_1_p = file_location_inside_virtualbox + "".join(a_pair[0].split(".")[:-2]) + ".p.fastq.gz"
+#    print(genome_1_p)
+
+    genome_2 = file_location_inside_virtualbox + a_pair[1]
+#    print(genome_2)
+    genome_2_s = file_location_inside_virtualbox +  "".join(a_pair[1].split(".")[:-2]) + ".s.fastq.gz"
+#    print(genome_2_s)
+    genome_2_p = file_location_inside_virtualbox +  "".join(a_pair[1].split(".")[:-2]) + ".p.fastq.gz"
+#    print(genome_2_p)
+
+
+# java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33
+# 118_cat_R1.fastq.gz
+# 118_cat_R2.fastq.gz
+# 118_cat_R1.p.fastq.gz
+# 118_cat_R1.s.fastq.gz
+# 118_cat_R2.p.fastq.gz
+# 118_cat_R2.s.fastq.gz
+# LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
+
+
+    trimmomatic_location_and_params = "vagrant ssh -c \"java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33"
+
+    illumina_string = "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36\""
+
+    cmd = trimmomatic_location_and_params + " " + \
+          genome_1 + " " + \
+          genome_2 + " " + \
+          genome_1_p + " " + \
+          genome_1_s + " " + \
+          genome_2_p + " " + \
+          genome_2_s + " " + \
+          illumina_string
+
+    print(cmd)
+
+    os.system(cmd)
+
+    print("\n $$$$$$$$$$ \n")
+
+
+
+for a_pair in genome_pairs:
+    run_trimmomatic(a_pair)
+
+
+```
+
 # bwa_index_reference_genome
 
 ```
@@ -48,58 +251,352 @@ gunzip *.p.fastq.gz
 # map_and_generate_sam_file
 
 
-
-bwa mem -R "@RG ID:118  SM:118  SM:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
-
-
-
 ```
 bwa mem -R "@RG\tID:PT000033\tSM:PT000033\tSM:xxx\tSM:Illumina" -M NC000962_3.fasta PT000033_1_trimmed_paired.fastq PT000033_2_trimmed_paired.fastq > PT000033.sam 
 
-bwa mem -R "@RG ID:118  SM:118  PL:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
-
-bwa mem -R "@RG\tID:G04868\tSM:G04868\tPL:Illumina" -M NC000962_3.fasta G04868_1_trimmed_paired.fastq G04868_2_trimmed_paired.fastq > G04868.sam
-
-
-bwa mem -R "@RG\tID:141\tSM:141\tSM:141\tSM:Illumina" -M NC000962_3.fasta 141_R1.p.fastq 141_R2.p.fastq > 141.sam 
-bwa mem -R "@RG\tID:205\tSM:205\tSM:205\tSM:Illumina" -M NC000962_3.fasta 205_R1.p.fastq 205_R2.p.fastq > 205.sam
-bwa mem -R "@RG\tID:208\tSM:208\tSM:208\tSM:Illumina" -M NC000962_3.fasta 208_R1.p.fastq 208_R2.p.fastq > 208.sam
-bwa mem -R "@RG\tID:227\tSM:227\tSM:xxx\tSM:Illumina" -M NC000962_3.fasta 227_R1.p.fastq 227_R2.p.fastq > 227.sam
-bwa mem -R "@RG\tID:243\tSM:243\tSM:243\tSM:Illumina" -M NC000962_3.fasta 243_R1.p.fastq 243_R2.p.fastq > 243.sam
-bwa mem -R "@RG\tID:316\tSM:316\tSM:316\tSM:Illumina" -M NC000962_3.fasta 316_R1.p.fastq 316_R2.p.fastq > 316.sam
-bwa mem -R "@RG\tID:370\tSM:370\tSM:370\tSM:Illumina" -M NC000962_3.fasta 370_R1.p.fastq 370_R2.p.fastq > 370.sam
-bwa mem -R "@RG\tID:509\tSM:509\tSM:509\tSM:Illumina" -M NC000962_3.fasta 509_R1.p.fastq 509_R2.p.fastq > 509.sam
-bwa mem -R "@RG\tID:581\tSM:581\tSM:581\tSM:Illumina" -M NC000962_3.fasta 581_R1.p.fastq 581_R2.p.fastq > 581.sam
-bwa mem -R "@RG\tID:751\tSM:751\tSM:751\tSM:Illumina" -M NC000962_3.fasta 751_R1.p.fastq 751_R2.p.fastq > 751.sam
-bwa mem -R "@RG\tID:894\tSM:894\tSM:894\tSM:Illumina" -M NC000962_3.fasta 894_R1.p.fastq 894_R2.p.fastq > 894.sam
-bwa mem -R "@RG\tID:964\tSM:964\tSM:964\tSM:Illumina" -M NC000962_3.fasta 964_R1.p.fastq 964_R2.p.fastq > 964.sam
-bwa mem -R "@RG\tID:1507\tSM:1507\tSM:1507\tSM:Illumina" -M NC000962_3.fasta 1507_R1.p.fastq 1507_R2.p.fastq > 1507.sam
-bwa mem -R "@RG\tID:1689\tSM:1689\tSM:1689\tSM:Illumina" -M NC000962_3.fasta 1689_R1.p.fastq 1689_R2.p.fastq > 1689.sam
-bwa mem -R "@RG\tID:1728\tSM:1728\tSM:xxx\tSM:Illumina" -M NC000962_3.fasta 1728_R1.p.fastq 1728_R2.p.fastq > 1728.sam
-bwa mem -R "@RG\tID:1866\tSM:1866\tSM:1866\tSM:Illumina" -M NC000962_3.fasta 1866_R1.p.fastq 1866_R2.p.fastq > 1866.sam
-bwa mem -R "@RG\tID:1869\tSM:1869\tSM:1869\tSM:Illumina" -M NC000962_3.fasta 1869_R1.p.fastq 1869_R2.p.fastq > 1869.sam
-bwa mem -R "@RG\tID:2065\tSM:2065\tSM:2065\tSM:Illumina" -M NC000962_3.fasta 2065_R1.p.fastq 2065_R2.p.fastq > 2065.sam
-bwa mem -R "@RG\tID:2078\tSM:2078\tSM:2078\tSM:Illumina" -M NC000962_3.fasta 2078_R1.p.fastq 2078_R2.p.fastq > 2078.sam
-bwa mem -R "@RG\tID:2136\tSM:2136\tSM:2136\tSM:Illumina" -M NC000962_3.fasta 2136_R1.p.fastq 2136_R2.p.fastq > 2136.sam
-bwa mem -R "@RG\tID:2235\tSM:2235\tSM:2235\tSM:Illumina" -M NC000962_3.fasta 2235_R1.p.fastq 2235_R2.p.fastq > 2235.sam
-bwa mem -R "@RG\tID:2330\tSM:2330\tSM:2330\tSM:Illumina" -M NC000962_3.fasta 2330_R1.p.fastq 2330_R2.p.fastq > 2330.sam
-bwa mem -R "@RG\tID:2368\tSM:2368\tSM:2368\tSM:Illumina" -M NC000962_3.fasta 2368_R1.p.fastq 2368_R2.p.fastq > 2368.sam
-bwa mem -R "@RG\tID:2422\tSM:2422\tSM:2422\tSM:Illumina" -M NC000962_3.fasta 2422_R1.p.fastq 2422_R2.p.fastq > 2422.sam
-bwa mem -R "@RG\tID:2440\tSM:2440\tSM:2440\tSM:Illumina" -M NC000962_3.fasta 2440_R1.p.fastq 2440_R2.p.fastq > 2440.sam
-bwa mem -R "@RG\tID:2449\tSM:2449\tSM:2449\tSM:Illumina" -M NC000962_3.fasta 2449_R1.p.fastq 2449_R2.p.fastq > 2449.sam
-bwa mem -R "@RG\tID:2683\tSM:2683\tSM:2683\tSM:Illumina" -M NC000962_3.fasta 2683_R1.p.fastq 2683_R2.p.fastq > 2683.sam
-bwa mem -R "@RG\tID:2721\tSM:2721\tSM:2721\tSM:Illumina" -M NC000962_3.fasta 2721_R1.p.fastq 2721_R2.p.fastq > 2721.sam
-bwa mem -R "@RG\tID:2852\tSM:2852\tSM:2852\tSM:Illumina" -M NC000962_3.fasta 2852_R1.p.fastq 2852_R2.p.fastq > 2852.sam
-bwa mem -R "@RG\tID:3033\tSM:3033\tSM:3033\tSM:Illumina" -M NC000962_3.fasta 3033_R1.p.fastq 3033_R2.p.fastq > 3033.sam
-bwa mem -R "@RG\tID:3141\tSM:3141\tSM:3141\tSM:Illumina" -M NC000962_3.fasta 3141_R1.p.fastq 3141_R2.p.fastq > 3141.sam
-bwa mem -R "@RG\tID:3185\tSM:3185\tSM:3185\tSM:Illumina" -M NC000962_3.fasta 3185_R1.p.fastq 3185_R2.p.fastq > 3185.sam
-bwa mem -R "@RG\tID:3376\tSM:3376\tSM:3376\tSM:Illumina" -M NC000962_3.fasta 3376_R1.p.fastq 3376_R2.p.fastq > 3376.sam
-bwa mem -R "@RG\tID:G00118\tSM:G00118\tSM:xxx\tSM:Illumina" -M NC000962_3.fasta G00118_R1.p.fastq G00118_R2.p.fastq > G00118.sam 
 ```
 
- 
+```
+bwa mem -R "@RG ID:118  SM:118  SM:Illumina" -M NC000962_3.fasta 118_R1.p.fastq 118_R2.p.fastq > 118.sam
+```
+
+
+```python
+
+import shutil
+import os
+
+# # TODO create pairs of genomes based on same first name
+
+# all_files = [f for f in os.listdir() if  os.path.isfile(f)]
+
+
+
+# def has_fastq_in_name(string):
+#     if (string.find("fastq") == -1):
+#         #print("NO")
+#         return 0
+#     else:
+#         #print("YES")
+#         return 1
+
+
+# all_fastq_files = list(filter(lambda x:has_fastq_in_name(x), all_files))
+
+
+genome_pairs = [
+
+["118_cat_R1.p.fastq",
+"118_cat_R2.p.fastq"],
+
+["141_cat_R1.p.fastq",
+"141_cat_R2.p.fastq"],
+
+["1507_cat_R1.p.fastq",
+"1507_cat_R2.p.fastq"],
+
+["1689_cat_R1.p.fastq",
+"1689_cat_R2.p.fastq"],
+
+["1728_cat_R1.p.fastq",
+"1728_cat_R2.p.fastq"],
+
+["1866_cat_R1.p.fastq",
+"1866_cat_R2.p.fastq"],
+
+["1869_cat_R1.p.fastq",
+"1869_cat_R2.p.fastq"],
+
+["205_cat_R1.p.fastq",
+"205_cat_R2.p.fastq"],
+
+["2065_cat_R1.p.fastq",
+"2065_cat_R2.p.fastq"],
+
+["2078_S14_L001_R1_001.p.fastq",
+"2078_S14_L001_R2_001.p.fastq"],
+
+["208_cat_R1.p.fastq",
+"208_cat_R2.p.fastq"],
+
+["2136_cat_R1.p.fastq",
+"2136_cat_R2.p.fastq"],
+
+["2235_cat_R1.p.fastq",
+"2235_cat_R2.p.fastq"],
+
+["227_S3_L001_R1_001.p.fastq",
+"227_S3_L001_R2_001.p.fastq"],
+
+["2330_S17_L001_R1_001.p.fastq",
+"2330_S17_L001_R2_001.p.fastq"],
+
+["2368_cat_R1.p.fastq",
+"2368_cat_R2.p.fastq"],
+
+["2422_cat_R1.p.fastq",
+"2422_cat_R2.p.fastq"],
+
+["243_S5_L001_R1_001.p.fastq",
+"243_S5_L001_R2_001.p.fastq"],
+
+["2440_S20_L001_R1_001.p.fastq",
+"2440_S20_L001_R2_001.p.fastq"],
+
+["2449_cat_R1.p.fastq",
+"2449_cat_R2.p.fastq"],
+
+["2683_cat_R1.p.fastq",
+"2683_cat_R2.p.fastq"],
+
+["2721_cat_R1.p.fastq",
+"2721_cat_R2.p.fastq"],
+
+["2852_S25_L001_R1_001.p.fastq",
+"2852_S25_L001_R2_001.p.fastq"],
+
+["3026_S26_L001_R1_001.p.fastq",
+"3026_S26_L001_R2_001.p.fastq"],
+
+["3033_cat_R1.p.fastq",
+"3033_cat_R2.p.fastq"],
+
+["3141_cat_R1.p.fastq",
+"3141_cat_R2.p.fastq"],
+
+["316_S5_L001_R1_001.p.fastq",
+"316_S5_L001_R2_001.p.fastq"],
+
+["3185_cat_R1.p.fastq",
+"3185_cat_R2.p.fastq"],
+
+["3376_cat_R1.p.fastq",
+"3376_cat_R2.p.fastq"],
+
+["370_cat_R1.p.fastq",
+"370_cat_R2.p.fastq"],
+
+["509_S6_L001_R1_001.p.fastq",
+"509_S6_L001_R2_001.p.fastq"],
+
+["581_cat_R1.p.fastq",
+"581_cat_R2.p.fastq"],
+
+["751_S8_L001_R1_001.p.fastq",
+"751_S8_L001_R2_001.p.fastq"],
+
+["894_S9_L001_R1_001.p.fastq",
+"894_S9_L001_R2_001.p.fastq"],
+
+["964_S10_L001_R1_001.p.fastq",
+"964_S10_L001_R2_001.p.fastq"]
+
+
+     ]
+
+
+
+
+
+# bwa mem -R "@RG \
+#       ID:118  
+#       SM:118  
+#       SM:Illumina" -M NC000962_3.fasta 
+#       118_R1.p.fastq 
+#       118_R2.p.fastq 
+#       > 118.sam"
+
+
+
+
+def run_bwa(a_pair):
+
+    file_location_inside_virtualbox = "/vagrant/mozambique_genomes/lab/"
+
+    genome_name = a_pair[0].split("_")[0]
+
+    genome_1_p = file_location_inside_virtualbox + a_pair[0]
+#    print(genome_1_p)
+
+    genome_2_p = file_location_inside_virtualbox + a_pair[1]
+#    print(genome_2_p)
+
+    bwa_initial_command = "vagrant ssh -c \"bwa mem -R \\\"@RG\\tID:"
+
+    illumina_string = "\\tSM:Illumina\\\" -M " + file_location_inside_virtualbox + "NC000962_3.fasta "
+
+    cmd = bwa_initial_command +  \
+          genome_name +  \
+          "\\tSM:" + \
+          genome_name + \
+          illumina_string + \
+          genome_1_p + " " + \
+          genome_2_p + " > " + \
+          file_location_inside_virtualbox + \
+          genome_name + ".sam\""
+
+    print(cmd)
+
+    os.system(cmd)
+
+    print("\n $$$$$$$$$$ \n")
+
+
+
+for a_pair in genome_pairs:
+    run_bwa(a_pair)
+
+
+```
+
+# samtools_faidx_reference_genome <<<<<
+
+```
+samtools faidx NC000962_3.fasta
+ ```
                              
 
+```python
+
+
+
 ```
 
+# convert_sam_file_to_bam_file <<<<<
 
+```
+samtools view -bt NC000962_3.fasta.fai G04868.sam > G04868.bam
+```
+
+```python
+# TODO convert_sam_file_to_bam_file <<<<<
+# samtools view -bt NC000962_3.fasta.fai G04868.sam > G04868.bam
+
+import os
+import subprocess
+import shutil
+
+
+
+def has_sam_in_name(string):
+    if (string.split(".")[-1] != "sam"):
+        #print("NO")
+        return 0
+    else:
+        #print("YES")
+        return 1
+
+
+
+all_files = list(filter(lambda x: os.path.isfile(x), os.listdir()))
+
+all_sam_files = list(filter(lambda x:has_sam_in_name(x), all_files))
+all_sam_files.remove('PT000033.sam')
+
+
+
+
+def convert_sam_file_to_bam_file(a_sam_file):
+
+
+
+# samtools view -bt NC000962_3.fasta.fai \
+# G04868.sam \
+# > G04868.bam
+
+    file_location_inside_virtualbox = "/vagrant/mozambique_genomes/lab/"
+
+    sam_file_name = file_location_inside_virtualbox +  a_sam_file.split(".")[0]
+    bam_file_name = sam_file_name + ".bam"
+
+    samtools_view_initial_command = "vagrant ssh -c \"samtools view -bt "
+    reference_file = file_location_inside_virtualbox + "NC000962.fasta.fai "
+
+
+    cmd = samtools_view_initial_command +  \
+          reference_file + \
+          file_location_inside_virtualbox + \
+          a_sam_file + \
+          " > " + \
+          bam_file_name + \
+          "\""
+
+    print(cmd)
+
+    os.system(cmd)
+
+    print("\n $$$$$$$$$$ \n")
+
+
+
+for f in all_sam_files:
+    convert_sam_file_to_bam_file(f)
+
+
+
+```
+
+# samtools_index_sorted_bam 
+
+```python
+# TODO sort_bam_file <<<<<
+# samtools sort G04868.bam -o G04868.sorted.bam
+
+import os
+import subprocess
+import shutil
+
+
+
+def has_bam_in_name(string):
+    if (string.split(".")[-1] != "bam"):
+        #print("NO")
+        return 0
+    else:
+        #print("YES")
+        return 1
+
+
+
+all_files = list(filter(lambda x: os.path.isfile(x), os.listdir()))
+
+all_bam_files = list(filter(lambda x:has_bam_in_name(x), all_files))
+
+
+
+
+def sort_bam_files(a_bam_file):
+
+
+
+
+# samtools sort G04868.bam -o G04868.sorted.bam
+
+
+    file_location_inside_virtualbox = "/vagrant/mozambique_genomes/lab/"
+
+    bam_file_name = file_location_inside_virtualbox + a_bam_file.split(".")[0]
+    sorted_bam_file_name = bam_file_name + ".sorted.bam"
+
+    samtools_view_initial_command = "vagrant ssh -c \"samtools sort "
+
+
+    cmd = samtools_view_initial_command +  \
+          file_location_inside_virtualbox + \
+          a_bam_file + \
+          " -o " + \
+          sorted_bam_file_name + "\""
+
+    print(cmd)
+
+    os.system(cmd)
+
+    print("\n $$$$$$$$$$ \n")
+
+
+
+for f in all_bam_files:
+    sort_bam_files(f)
+
+
+```

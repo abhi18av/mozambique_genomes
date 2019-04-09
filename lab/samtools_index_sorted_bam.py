@@ -40,11 +40,11 @@ def index_sorted_bam_files(a_sorted_bam_file):
     cmd = samtools_view_initial_command +  \
           file_location_inside_virtualbox + \
           a_sorted_bam_file + \
-          + "\""
+          "\""
 
     print(cmd)
 
-    #os.system(cmd)
+    os.system(cmd)
 
     print("\n $$$$$$$$$$ \n")
 

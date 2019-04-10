@@ -1252,3 +1252,19 @@ run_snippy_core()
 
 
 ```
+
+# tabix 
+
+```
+
+tabix -p vcf G04868.filt.vcf.gz
+
+```
+
+NOTE: Tabix completed but gives an error every time - still there is a `*tbi` file for every genome
+```
+[E::get_intv] failed to parse TBX_VCF, was wrong -p [type] used?
+The offending line was: "bash: vcfutils.pl: command not found"
+bash: line 1:  4689 Segmentation fault      (core dumped) tabix -p vcf 581.filt.vcf.gz
+```
+

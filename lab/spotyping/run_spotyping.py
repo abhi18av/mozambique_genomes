@@ -137,17 +137,22 @@ def run_spotyping(a_pair):
     file_location_inside_virtualbox = "/vagrant/mozambique_genomes/lab/spotyping/"
 
 
-    genome_1 = file_location_inside_virtualbox + a_pair[0]
+    genome_1 = a_pair[0]
 
-    genome_2 = file_location_inside_virtualbox + a_pair[1]
+    genome_2 = a_pair[1]
+
+    output = (a_pair[0].split(".")[0]).split("_")[0] + "_spo.out"
+
 
 # python2.7 SpoTyping.py ./118_cat_R1.fastq ./118_cat_R2.fastq
 
-    cmd =  "vagrant ssh -c \" " + \
-            "python2.7 SpoTyping.py " + \
+    cmd =  "vagrant ssh -c \"cd /vagrant/mozambique_genomes/lab/spotyping/ && " + \
+           "python2.7 SpoTyping.py " + \
             genome_1 + \
             " " + \
             genome_2 + \
+            " -o " + \
+            output + \
             "\""
 
 

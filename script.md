@@ -864,7 +864,148 @@ for a_pair in genome_pairs:
 
 ```
 
-- SpoTyping 
+# unzip all gzipped genomes to a different folder
+
+
+```python
+import os
+
+
+# TODO first we unzip the gzipped genomes to this folder
+
+
+all_genomes  = [
+
+
+    "118_cat_R1.fastq.gz",
+     "118_cat_R2.fastq.gz",
+
+    "141_cat_R1.fastq.gz",
+     "141_cat_R2.fastq.gz",
+
+    "205_cat_R1.fastq.gz",
+     "205_cat_R2.fastq.gz",
+
+    "208_cat_R1.fastq.gz",
+     "208_cat_R2.fastq.gz",
+
+    "227_S3_L001_R1_001.fastq.gz",
+     "227_S3_L001_R2_001.fastq.gz",
+
+    "243_S5_L001_R1_001.fastq.gz",
+     "243_S5_L001_R2_001.fastq.gz",
+
+    "316_S5_L001_R1_001.fastq.gz",
+     "316_S5_L001_R2_001.fastq.gz",
+
+    "370_cat_R1.fastq.gz",
+     "370_cat_R2.fastq.gz",
+
+    "509_S6_L001_R1_001.fastq.gz",
+     "509_S6_L001_R2_001.fastq.gz",
+
+    "581_cat_R1.fastq.gz",
+     "581_cat_R2.fastq.gz",
+
+    "751_S8_L001_R1_001.fastq.gz",
+     "751_S8_L001_R2_001.fastq.gz",
+
+    "894_S9_L001_R1_001.fastq.gz",
+     "894_S9_L001_R2_001.fastq.gz",
+
+    "964_S10_L001_R1_001.fastq.gz",
+     "964_S10_L001_R2_001.fastq.gz",
+
+    "1507_cat_R1.fastq.gz",
+     "1507_cat_R2.fastq.gz",
+
+    "1689_cat_R1.fastq.gz",
+     "1689_cat_R2.fastq.gz",
+
+    "1728_cat_R1.fastq.gz",
+     "1728_cat_R2.fastq.gz",
+
+    "1866_cat_R1.fastq.gz",
+     "1866_cat_R2.fastq.gz",
+
+    "1869_cat_R1.fastq.gz",
+     "1869_cat_R2.fastq.gz",
+
+    "2065_cat_R1.fastq.gz",
+     "2065_cat_R2.fastq.gz",
+
+    "2078_S14_L001_R1_001.fastq.gz",
+     "2078_S14_L001_R2_001.fastq.gz",
+
+    "2136_cat_R1.fastq.gz",
+     "2136_cat_R2.fastq.gz",
+
+    "2235_cat_R1.fastq.gz",
+     "2235_cat_R2.fastq.gz",
+
+    "2330_S17_L001_R1_001.fastq.gz",
+     "2330_S17_L001_R2_001.fastq.gz",
+
+    "2368_cat_R1.fastq.gz",
+     "2368_cat_R2.fastq.gz",
+
+    "2422_cat_R1.fastq.gz",
+     "2422_cat_R2.fastq.gz",
+
+    "2440_S20_L001_R1_001.fastq.gz",
+     "2440_S20_L001_R2_001.fastq.gz",
+
+    "2449_cat_R1.fastq.gz",
+     "2449_cat_R2.fastq.gz",
+
+    "2683_cat_R1.fastq.gz",
+     "2683_cat_R2.fastq.gz",
+
+    "2721_cat_R1.fastq.gz",
+     "2721_cat_R2.fastq.gz",
+
+    "2852_S25_L001_R1_001.fastq.gz",
+     "2852_S25_L001_R2_001.fastq.gz",
+
+    "3026_S26_L001_R1_001.fastq.gz",
+     "3026_S26_L001_R2_001.fastq.gz",
+
+    "3033_cat_R1.fastq.gz",
+     "3033_cat_R2.fastq.gz",
+
+    "3141_cat_R1.fastq.gz",
+     "3141_cat_R2.fastq.gz",
+
+    "3185_cat_R1.fastq.gz",
+     "3185_cat_R2.fastq.gz",
+
+    "3376_cat_R1.fastq.gz",
+     "3376_cat_R2.fastq.gz"
+
+    ]
+
+  
+
+for a_genome in all_genomes:
+
+   zipped_genome =  "/vagrant/mozambique_genomes/lab/" + a_genome
+
+   unzipped_genome = "/vagrant/mozambique_genomes/lab/" + "spotyping/" + a_genome.split(".")[0] + ".fastq" 
+
+   cmd = "vagrant ssh -c \"" + \
+           "gzip -dc " + \
+           zipped_genome + \
+           " > " + \
+           unzipped_genome + \
+           "\""
+
+   print(cmd)
+
+
+```
+
+# SpoTyping 
+
 https://github.com/xiaeryu/SpoTyping-v2.0/tree/master/SpoTyping-v2.0-commandLine
 
 from inside the virtualbox 
@@ -873,4 +1014,265 @@ from inside the virtualbox
 python2.7 SpoTyping.py ./118_cat_R1.fastq ./118_cat_R2.fastq
 ```
 
+```python
+import shutil
+import os
 
+# # TODO create pairs of genomes based on same first name
+
+# all_files = [f for f in os.listdir() if  os.path.isfile(f)]
+
+
+
+# def has_fastq_in_name(string):
+#     if (string.find("fastq") == -1):
+#         #print("NO")
+#         return 0
+#     else:
+#         #print("YES")
+#         return 1
+
+
+# all_fastq_files = list(filter(lambda x:has_fastq_in_name(x), all_files))
+
+
+genome_pairs = [
+
+
+    ["118_cat_R1.fastq",
+     "118_cat_R2.fastq"],
+
+    ["141_cat_R1.fastq",
+     "141_cat_R2.fastq"],
+
+    ["205_cat_R1.fastq",
+     "205_cat_R2.fastq"],
+
+    ["208_cat_R1.fastq",
+     "208_cat_R2.fastq"],
+
+    ["227_S3_L001_R1_001.fastq",
+     "227_S3_L001_R2_001.fastq"],
+
+    ["243_S5_L001_R1_001.fastq",
+     "243_S5_L001_R2_001.fastq"],
+
+    ["316_S5_L001_R1_001.fastq",
+     "316_S5_L001_R2_001.fastq"],
+
+    ["370_cat_R1.fastq",
+     "370_cat_R2.fastq"],
+
+    ["509_S6_L001_R1_001.fastq",
+     "509_S6_L001_R2_001.fastq"],
+
+    ["581_cat_R1.fastq",
+     "581_cat_R2.fastq"],
+
+    ["751_S8_L001_R1_001.fastq",
+     "751_S8_L001_R2_001.fastq"],
+
+    ["894_S9_L001_R1_001.fastq",
+     "894_S9_L001_R2_001.fastq"],
+
+    ["964_S10_L001_R1_001.fastq",
+     "964_S10_L001_R2_001.fastq"],
+
+    ["1507_cat_R1.fastq",
+     "1507_cat_R2.fastq"],
+
+    ["1689_cat_R1.fastq",
+     "1689_cat_R2.fastq"],
+
+    ["1728_cat_R1.fastq",
+     "1728_cat_R2.fastq"],
+
+    ["1866_cat_R1.fastq",
+     "1866_cat_R2.fastq"],
+
+    ["1869_cat_R1.fastq",
+     "1869_cat_R2.fastq"],
+
+    ["2065_cat_R1.fastq",
+     "2065_cat_R2.fastq"],
+
+    ["2078_S14_L001_R1_001.fastq",
+     "2078_S14_L001_R2_001.fastq"],
+
+    ["2136_cat_R1.fastq",
+     "2136_cat_R2.fastq"],
+
+    ["2235_cat_R1.fastq",
+     "2235_cat_R2.fastq"],
+
+    ["2330_S17_L001_R1_001.fastq",
+     "2330_S17_L001_R2_001.fastq"],
+
+    ["2368_cat_R1.fastq",
+     "2368_cat_R2.fastq"],
+
+    ["2422_cat_R1.fastq",
+     "2422_cat_R2.fastq"],
+
+    ["2440_S20_L001_R1_001.fastq",
+     "2440_S20_L001_R2_001.fastq"],
+
+    ["2449_cat_R1.fastq",
+     "2449_cat_R2.fastq"],
+
+    ["2683_cat_R1.fastq",
+     "2683_cat_R2.fastq"],
+
+    ["2721_cat_R1.fastq",
+     "2721_cat_R2.fastq"],
+
+    ["2852_S25_L001_R1_001.fastq",
+     "2852_S25_L001_R2_001.fastq"],
+
+    ["3026_S26_L001_R1_001.fastq",
+     "3026_S26_L001_R2_001.fastq"],
+
+    ["3033_cat_R1.fastq",
+     "3033_cat_R2.fastq"],
+
+    ["3141_cat_R1.fastq",
+     "3141_cat_R2.fastq"],
+
+    ["3185_cat_R1.fastq",
+     "3185_cat_R2.fastq"],
+
+    ["3376_cat_R1.fastq",
+     "3376_cat_R2.fastq"]
+
+    ]
+
+
+
+
+def run_spotyping(a_pair):
+
+    file_location_inside_virtualbox = "/vagrant/mozambique_genomes/lab/spotyping/"
+
+
+    genome_1 = file_location_inside_virtualbox + a_pair[0]
+
+    genome_2 = file_location_inside_virtualbox + a_pair[1]
+
+# python2.7 SpoTyping.py ./118_cat_R1.fastq ./118_cat_R2.fastq
+
+    cmd =  "vagrant ssh -c \" " + \
+            "python2.7 SpoTyping.py " + \
+            genome_1 + \
+            " " + \
+            genome_2 + \
+            "\""
+
+
+    print(cmd)
+
+    os.system(cmd)
+
+    print("\n $$$$$$$$$$ \n")
+
+
+
+for a_pair in genome_pairs:
+    run_spotyping(a_pair)
+
+
+
+```
+
+# snippy_core 
+
+```
+snippy-core PT000033 PT000049 PT000050 PT000271 PT000279
+
+```
+
+```python
+# TODO snippy_command <<<<<
+# snippy --cpus 4 --outdir G04868 --ref ./NC000962_3.gbk --R1 ./G04868_1.fastq.gz --R2 ./G04868_2.fastq.gz
+
+
+
+import shutil
+import os
+
+# # TODO create pairs of genomes based on same first name
+
+# all_files = [f for f in os.listdir() if  os.path.isfile(f)]
+
+
+
+# def has_fastq_in_name(string):
+#     if (string.find("fastq") == -1):
+#         #print("NO")
+#         return 0
+#     else:
+#         #print("YES")
+#         return 1
+
+
+# all_fastq_files = list(filter(lambda x:has_fastq_in_name(x), all_files))
+
+
+all_dirs =  [f for f in os.listdir() if os.path.isdir(f)]
+all_dirs.remove('spotyping')
+all_dirs.remove('uploaded')
+
+
+dir_string = " "
+for a_dir in all_dirs:
+    dir_string =  dir_string + " " + a_dir
+
+
+
+def run_snippy_core():
+
+    file_location_inside_virtualbox = "/vagrant/mozambique_genomes/lab/"
+
+
+
+    cmd = "vagrant ssh -c \"cd /vagrant/mozambique_genomes/lab/ && " + \
+          "snippy-core " + \
+          dir_string + \
+          "\""
+
+
+    print(cmd)
+
+    os.system(cmd)
+
+    print("\n $$$$$$$$$$ \n")
+
+
+
+run_snippy_core()
+
+
+```
+
+# tabix 
+
+```
+
+tabix -p vcf G04868.filt.vcf.gz
+
+```
+
+NOTE: Tabix completed but gives an error every time - still there is a `*tbi` file for every genome
+```
+[E::get_intv] failed to parse TBX_VCF, was wrong -p [type] used?
+The offending line was: "bash: vcfutils.pl: command not found"
+bash: line 1:  4689 Segmentation fault      (core dumped) tabix -p vcf 581.filt.vcf.gz
+```
+
+# TODO need to fine tune the path of root for important tools
+
+From the virtualbox image `centos` user 
+
+```
+/opt/Rexe:/opt/velvet-stats:/opt/Bandage:/opt/velvet/contrib/VelvetOptimiser-2.2.4:/opt/snippy/bin:/opt/snippy/binaries/linux/:/opt/snippy/binaries/noarch:/opt/bcftools/misc:/opt/Trimmomatic-0.36:/opt/artemis:/opt/bcftools:/opt/bwa:/opt/htslib:/opt/GenomeAnalysisTK-3.8-0-ge9d806836:/opt/samtools:/opt/Trimmomatic-0.36:/opt/FastQC:/opt/seaview:/opt/jmodeltest2-2.1.9r20160115/dist:/opt/velvet:/opt/SPAdes-3.10.1-Linux/bin:/opt/prokka/bin:/opt/prokka/binaries/common:/opt/prokka/binaries/linux:/opt/PAGIT/bin/:/opt/PAGIT/bin/pileup_v0.5/:/opt/PAGIT/bin/pileup_v0.5/ssaha2:/opt/PAGIT/bin/pileup_v0.5/:/opt/PAGIT/IMAGE/:/opt/PAGIT/ABACAS:/opt/PAGIT/ICORN/:/opt/PAGIT/RATT/:/opt/Rexe:/opt/velvet-stats:/opt/Bandage:/opt/velvet/contrib/VelvetOptimiser-2.2.4:/opt/snippy/bin:/opt/snippy/binaries/linux/:/opt/snippy/binaries/noarch:/opt/bcftools/misc:/opt/Trimmomatic-0.36:/opt/artemis:/opt/bcftools:/opt/bwa:/opt/htslib:/opt/GenomeAnalysisTK-3.8-0-ge9d806836:/opt/samtools:/opt/Trimmomatic-0.36:/opt/FastQC:/opt/seaview:/opt/jmodeltest2-2.1.9r20160115/dist:/opt/velvet:/opt/SPAdes-3.10.1-Linux/bin:/opt/prokka/bin:/opt/prokka/binaries/common:/opt/prokka/binaries/linux:/opt/PAGIT/bin/:/opt/PAGIT/bin/pileup_v0.5/:/opt/PAGIT/bin/pileup_v0.5/ssaha2:/opt/PAGIT/bin/pileup_v0.5/:/opt/PAGIT/IMAGE/:/opt/PAGIT/ABACAS:/opt/PAGIT/ICORN/:/opt/PAGIT/RATT/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/centos/.local/bin:/home/centos/bin
+
+```
